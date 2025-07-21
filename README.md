@@ -11,6 +11,6 @@ A repository covering the set up of my homelab run on a barebones ubuntu-server 
     - gluetun
       - QBitTorrent
   - Crafty Controller
-  - Home Assistant (to add soon)\n
+  - Home Assistant (to add soon)
 ## Interface 
   - Portainer
