@@ -2,15 +2,19 @@
 A repository covering the set up of my homelab run on a barebones ubuntu-server install
 ## Services 
   - Immich
-  - Jellyfin
+  - Jellyfin stack
+    - Jellyfin
+    - Jellyseer
   - Arr* Stack
     - Radarr
     - Sonarr
     - Prowlarr
       - Flaresolver
-    - gluetun
-      - QBitTorrent
+    - Bazaar
+  - Media Acquiring Stack
+    - GlueTun (With CyberGhost VPN)
+    - QBitTorrent
   - Crafty Controller
-  - Home Assistant (to add soon)
+  - VaultWarden (password manager)
 ## Interface 
   - Portainer
