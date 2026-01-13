@@ -13,7 +13,7 @@ A repository covering the set up of my homelab run on a barebones ubuntu-server 
     - Bazaar: Caption Manager
   - Media Acquiring Stack
     - GlueTun With CyberGhost VPN
-      - QBitTorrent
+      - QBittorrent
   - Crafty Controller
   - VaultWarden: Password manager
 ## Interface 
