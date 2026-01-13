@@ -1,0 +1,11 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden-test
+    restart: unless-stopped
+    environment:
+      DOMAIN: "https://vault.haymancloud.us"
+    volumes:
+      - /docker/appdata/vaultwarden:/data/
+    ports:
+      - 172.22.0.1:8881:80
