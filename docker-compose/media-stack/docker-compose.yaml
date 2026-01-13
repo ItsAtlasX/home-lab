@@ -1,0 +1,47 @@
+services:
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: gluetun
+    # line above must be uncommented to allow external containers to connect.
+    # See https://github.com/qdm12/gluetun-wiki/blob/main/setup/connect-a-container-to-gluetun.md#external-container-to-gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    ports:
+      - 8888:8888/tcp # HTTP proxy
+      - 8388:8388/tcp # Shadowsocks
+      - 8388:8388/udp # Shadowsocks
+      - 7979:7979 #qbittorrent
+    volumes:
+      - /docker/appdata/gluetun:/gluetun
+      - /docker/appdata/gluetun/ca.crt:/gluetun/ca.crt
+      - /docker/appdata/gluetun/client.crt:/gluetun/client.crt
+      - /docker/appdata/gluetun/client.key:/gluetun/client.key
+      - /docker/appdata/gluetun/custom.conf:/gluetun/custom.conf
+      - /docker/appdata/gluetun/auth.conf:/gluetun/auth.conf
+    environment:
+      - VPN_SERVICE_PROVIDER=custom
+      - VPN_TYPE=openvpn
+      - OPENVPN_CUSTOM_CONFIG=/gluetun/custom.conf
+      - OPENVPN_USER=
+      - OPENVPN_PASSWORD=
+      - VPN_MTU=1400           # Prevent packet fragmentation
+    restart: always
+
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
+    network_mode: "service:gluetun"
+    environment:
+      - WEBUI_PORT=7979
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /docker/appdata/qbittorrent:/config
+      - /ssd-pool/torrents:/data/torrents
+      - /ssd-pool/torrents:/downloads
+    depends_on:
+      gluetun:
+        condition: service_healthy
+    restart: always
