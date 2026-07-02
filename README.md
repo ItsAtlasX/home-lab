@@ -5,7 +5,7 @@ A repository covering the set up of my homelab run on a barebones ubuntu-server 
   - Jellyfin stack: Media Playback and Requesting
     - Jellyfin: Media Playback
       - https://jellyfin.org/docs/general/installation/container
-    - Jellyseer: Media Requesting
+    - Seer: Media Requesting
       - https://hub.docker.com/r/fallenbagel/jellyseerr
   - Arr* Stack
     - Radarr: Movie Manager
